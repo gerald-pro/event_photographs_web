@@ -13,7 +13,7 @@ class Profile_photo extends Model
     protected $table = 'profile_photos';
 
     protected $fillable = [
-        'profile_photo_path',   //url de la foto de perfil
+        'photo_path',   //url de la foto de perfil
         'user_id',
         'face_id'
     ];

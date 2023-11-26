@@ -27,7 +27,7 @@ class AwsListFaces extends Command
     public function handle()
     {
         $rkService = new RekognitionService();
-        $response = $rkService->listFaces('users');
+        $response = $rkService->listFaces('users1');
         if ($response['Status'] == 'success') {
             $this->line(count($response['Faces']) . ' Rostros registrados');
             foreach ($response['Faces'] as $face) {

@@ -17,7 +17,7 @@
                     <h4>Suba sus fotos aqui</h4>
                 </div>
             </form>
-            <input id="price" name="price" type="number" class="form-control" required placeholder="Ingrese el precio (Bs)" value="5.00">
+            <input id="price" name="price" type="number" class="form-control" required placeholder="Ingrese el precio (Bs)" value="0.01">
             <div class="buttonSubmit">
                 <button id="buttonSubmitE" type="button">Subir Imagenes</button>
             </div>

@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profile_photos', function (Blueprint $table) {
+        Schema::create('sale_notes', function (Blueprint $table) {
             $table->id();
-            $table->string('photo_path', 2048)->nullable();
-            $table->string('face_id')->nullable();
-            $table->unsignedBigInteger('user_id');
-
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
+            $table->integer('nro_transaction');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('picture_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profile_photos');
+        Schema::dropIfExists('sale_notes');
     }
 };

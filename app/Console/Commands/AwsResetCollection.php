@@ -27,10 +27,10 @@ class AwsResetCollection extends Command
     public function handle()
     {
         $rkService = new RekognitionService();
-        $response = $rkService->deleteCollection('users');
+        $response = $rkService->deleteCollection('users1');
         if ($response['Status'] == 'success') {
             $this->info($response['Message']);
-            $response = $rkService->createCollection('users');
+            $response = $rkService->createCollection('users1');
             if ($response['Status'] == 'success') {
                 $this->info($response['Message']);
             } else {

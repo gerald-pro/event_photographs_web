@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PagoFacilController;
 use App\Http\Controllers\InvitationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +11,6 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\ListGuests;
 use App\Livewire\ListPhotographers;
 use App\Http\Controllers\PictureController;
-use App\Models\Picture;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +52,21 @@ Route::middleware('auth')->group(function () {
     Route::get('guest_invitations/{invitation}', [InvitationController::class, 'showGuestInvitation'])->name('guests.invitations.show');
     Route::get('guest_invitations/{invitation}/reject', [InvitationController::class, 'rejectGuestInvitation'])->name('guests.invitations.reject');
     Route::get('guest_invitations/{invitation}/accept', [InvitationController::class, 'acceptGuestInvitation'])->name('guests.invitations.accept');
+    Route::get('prueba', function () {
+        $user = Auth::user();
+        $pictures = $user->picturesWhereIAppear->where('event_id', 1)->values()->toArray();
+
+        //$pictures = $event->pictures->get();
+        dd($pictures);
+    });
 });
+
+
+Route::get('pago', function () {
+    return view('pago');
+});
+
+
+
+Route::post('/consumirServicio', [PagoFacilController::class, 'RecolectarDatos']);
+Route::get('/consultar', [PagoFacilController::class, 'ConsultarEstado']);

@@ -55,12 +55,12 @@
         <div class="form-group col-md-12">
             <label for="tipos_fotografias">Tipos de fotografías permitidas en el evento:</label>
 
-            @if($eventosID->privacity == '1')
+            @if($eventosID->privacity == 0)
                 <p type="text" class="border rounded p-2">Publicas</p>
-            @elseif($eventosID->privacity == '2')
-                <p type="text" class="border rounded p-2">Solamente invitados al evento</p>
-            @elseif($eventosID->privacity == '3')
-                <p type="text" class="border rounded p-2">Solamente fotos personales</p>
+            @elseif($eventosID->privacity == 1)
+                <p type="text" class="border rounded p-2">Solo invitados al evento</p>
+            @elseif($eventosID->privacity == 2)
+                <p type="text" class="border rounded p-2">Solo fotos personales</p>
             @endif
         </div>
 

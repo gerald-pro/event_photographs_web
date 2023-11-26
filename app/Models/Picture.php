@@ -13,10 +13,12 @@ class Picture extends Model
 
     protected $fillable = [
         'name',
-        'url',
+        'photo_path',
         'price',
         'event_id',
         'user_id',
+        'created_at',
+        'updated_at'
     ];
 
     /**

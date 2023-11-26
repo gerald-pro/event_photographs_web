@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('event_id');
             $table->foreignId('user_id');
-            $table->smallInteger('status');
+            $table->smallInteger('status')->default(0);
             $table->smallInteger('presence')->default(0);
             $table->string('token')->nullable();
             $table->timestamps();

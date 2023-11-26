@@ -12,6 +12,9 @@ class EventPhotographer extends Model
 
     protected $fillable = [
         'status',
+        'created_at',
+        'updated_at',
+        'token',
     ];
 
     public function event()
