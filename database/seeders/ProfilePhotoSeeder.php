@@ -18,7 +18,7 @@ class ProfilePhotoSeeder extends Seeder
 
         DB::table('profile_photos')->insert([
             [
-                'photo_path' => 'users/xwezq8mn0uocxjnyq6rc',
+                'photo_path' => 'users/nrlg22mvrmbewixsltez',
                 'user_id' => '1',
                 'face_id' => 'c9a29d01-18f9-41e5-9e55-54dddd22bd5f',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

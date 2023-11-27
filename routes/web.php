@@ -66,7 +66,5 @@ Route::get('pago', function () {
     return view('pago');
 });
 
-
-
 Route::post('/consumirServicio', [PagoFacilController::class, 'RecolectarDatos']);
 Route::get('/consultar', [PagoFacilController::class, 'ConsultarEstado']);

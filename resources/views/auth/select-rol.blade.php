@@ -9,7 +9,7 @@
 </head>
 <body>
     <main>
-        <div class="box">
+     
             <div class="box__option">
                 <a class="boton" href="{{url('/select-rol/1')}}">
                     Entrar como Fotografo
@@ -20,7 +20,7 @@
                     Entrar como organizador
                 </a>
             </div>
-        </div>
+       
     </main>
 </body>
 </html>

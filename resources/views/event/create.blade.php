@@ -6,7 +6,7 @@
     <div class="container pt-4">
         <div class="card">
             <div class="card-header">
-                Crear Evento
+                <h4 class="card-title">Crear Evento</h4>
             </div>
             <form action="{{ route('event.store') }}" method="POST" id="formulario">
                 @method('post')
@@ -14,7 +14,6 @@
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre"
                                 placeholder="Nombre del evento" required>
@@ -37,7 +36,7 @@
                         <div class="form-group col-md-6">
                             <label for="descripcion">Descripcion</label>
                             <textarea class="form-control" id="descripcion" name="descripcion">
-                  </textarea>
+                            </textarea>
                         </div>
 
                         <div class="form-group col-md-6">

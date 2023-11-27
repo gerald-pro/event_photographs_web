@@ -1,14 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Perfil')
 
 @section('content')
     <main>
         <div class="container py-3 px-1">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title"></div>
-                    Perfil de usuario
+                    <h4 class="card-title">Perfil de usuario</h4>
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center pb-2">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthApiController;
 use App\Http\Controllers\AuthController;
@@ -33,9 +34,7 @@ Route::post('invitations/store', [InvitationController::class, 'sendInvitationMa
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('events', [EventController::class, 'index']);
     Route::get('events/{event}', [EventController::class, 'show']);
-    Route::get('user', function () {
-        return Auth::user();
-    });
+    Route::get('user', [UserController::class, 'show']);
     Route::get('events/{event}/pictures', [EventController::class, 'pictures']);
     Route::get('my-pictures', [EventController::class, 'myPictures']);
 

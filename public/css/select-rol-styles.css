@@ -34,13 +34,13 @@ a {
     font-size: 16px;
     text-align: center;
     text-transform: uppercase;
-    background-color: #3498db;
+    background-color: #34db98;
     color: #fff;
-    border: 1px solid #3498db;
+    border: 1px solid #34db98;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
     &:hover {
-        background-color: #2980b9;
+        background-color: #34db98;
         color: #fff;
     }
 }
