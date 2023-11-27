@@ -291,34 +291,34 @@ return [
 
     'menu' => [
         [
-            'text' => 'profile',
-            'url'  => 'profile',
-            'icon' => 'fas fa-fw fa-user',
-            'can' => 'access-profile'
-        ],
-        [
-            'text'    => 'evento',
-            'icon'    => '',
+            'text'    => 'Events',
+            'icon'    => 'fas fa-fw fa-calendar-alt',
             'can' => 'CRUD-event',
             'submenu' => [
                 [
-                    'text' => 'nuevo evento',
+                    'text' => 'Crear evento',
                     'icon'    => '',
                     'url'  => 'event/create',
                 ],
                 
                 [
-                    'text' => 'lista de eventos',
+                    'text' => 'Lista de eventos',
                     'icon'    => '',
                     'url'  => 'event',
                 ],
             ],
         ],
         [
-            'text' => 'eventos fotografo',
+            'text' => 'Eventos fotografo',
             'url'  => 'event/listEvents/photographer',
             'icon' => '',
             'can' => 'photographer-events'
+        ],
+        [
+            'text' => 'Mi perfil',
+            'url'  => 'profile',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'access-profile'
         ],
     ],
 

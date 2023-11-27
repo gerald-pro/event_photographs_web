@@ -256,7 +256,7 @@ class RekognitionService
                     //Storage::put($filePath, $imageCroped);
 
                     $matches[] = $this->client->searchFacesByImage([
-                        'CollectionId' => 'users',
+                        'CollectionId' => 'users1',
                         'Image' => [
                             'Bytes' => $imageString,
                         ],

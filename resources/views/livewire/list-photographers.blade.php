@@ -1,25 +1,40 @@
 <div>
-    <h1>Lista de fotógrafos</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inviteModal">Invitar</button>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($event->photographers as $item)
-                <tr>
-                    <td scope="row">{{ $item->name }}</td>
-                    <td>{{ $item->email }}</td>
-                    <td>{{ $item->invitationAceptedPhotographer($event) ? "En el evento" : "Aun no esta en el evento"}}</td>
-                </tr>
-            @endforeach
+    <div class="container pt-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Lista de fotografos</h4>
+                <button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal"
+                    data-target="#inviteModal">Invitar</button>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($event->photographers as $item)
+                            <tr>
+                                <td scope="row">{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->invitationAceptedPhotographer($event) ? 'En el evento' : 'Aun no esta en el evento' }}
+                                </td>
+                            </tr>
+                        @endforeach
 
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-muted">
+
+            </div>
+        </div>
+    </div>
+
+
 
     <x-modal id="inviteModal" title="Nueva invitación">
         <x-slot name="body">
@@ -36,7 +51,7 @@
                             <option></option>
                             @foreach ($allUsers as $user)
                                 <option value="{{ $user->id }}">
-                                    {{ $user->name }}   ({{ $user->email }})
+                                    {{ $user->name }} ({{ $user->email }})
                                 </option>
                             @endforeach
                         </select>

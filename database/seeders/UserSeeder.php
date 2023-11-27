@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,30 +14,51 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         DB::table('users')->insert([
             [
-                'name' => 'Cristiano Ronaldo',
-                'email' => 'elbicho@gmail.com',
-                'password' => Hash::make('111')
+                'name' => 'Evo Morales',
+                'email' => 'geraldjoseavalosseveriche@gmail.com',
+                'password' => Hash::make('123456789'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'name' => 'Ronlado Asis Moreira',
-                'email' => 'ronaldinho@gmail.com',
-                'password' => Hash::make('111')
+                'name' => 'Gerald Avalos',
+                'email' => 'avaloss.gerald@gmail.com',
+                'password' => Hash::make('123456789'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'name' => 'Leonel Messi',
-                'email' => 'messi@gmail.com',
-                'password' => Hash::make('111')
+                'name' => 'Alvaro Garcia Linera',
+                'email' => 'linera@gmail.com',
+                'password' => Hash::make('123456789'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'name' => 'Zaltan Ibrahimovich',
-                'email' => 'Ibra@gmail.com',
-                'password' => Hash::make('111')
+                'name' => 'Adriana Salvatierra',
+                'email' => 'salvatierra@gmail.com',
+                'password' => Hash::make('123456789'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Nicolas Maduro',
+                'email' => 'maduro@gmail.com',
+                'password' => Hash::make('123456789'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Tobey Maguire',
+                'email' => 'fotografo1@gmail.com',
+                'password' => Hash::make('123456789'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]
 
         ]);
-        
     }
 }

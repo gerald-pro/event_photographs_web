@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('event_id');
-            $table->string('email_receiver')->unique();
+            $table->string('email_receiver');
             $table->smallInteger('status')->default(0);
             $table->dateTime('send_date');
             $table->timestamps();

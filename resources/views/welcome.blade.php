@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Nombre de su app</title>
+        <title>EVENTO FOTOGRAFICO WEB</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -27,7 +27,7 @@
                 left: 0;
                 width: 100%;
                 height: 80px;
-                background-color: #999999;
+                background-color: #dcfaff;
                 display: flex;
                 justify-content: space-between; /* Alinea los elementos en el centro horizontalmente */
                 align-items: center;
@@ -37,30 +37,20 @@
             h1 {
                 margin: 0;
             }
-
-            .header-buttons {
-                display: flex;
-                align-items: center;
-            }
-
-            .header-buttons a {
-                margin-right: 10px;
-                text-decoration: none;
-            }
         </style>
     </head>
     <body class="antialiased">
         <header>
-            <h1><strong>Nombre de su app</strong></h1>
+            <h3><strong>EVENTO FOTOGRAFICO WEB</strong></h3>
             <div class="header-buttons">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:outline-red-500">Home</a>
+                        <a href="{{ url('/home') }}" class="btn btn-primary">Home</a>
                     @else
-                        <a href="{{ route('login') }}" style="display: inline-block; padding: 15px 30px; background-color: #ffffff; color: #000000; text-decoration: none; border: none; border-radius: 18px; cursor: pointer;"><strong>Iniciar sesion</strong></a>
+                        <a href="{{ route('login') }}" class="btn btn-primary  mx-2"><strong>Iniciar sesion</strong></a>
     
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" style="display: inline-block; padding: 15px 30px; background-color: #ffffff; color: #000000; text-decoration: none; border: none; border-radius: 18px; cursor: pointer;"><strong>Registrar</strong></a>
+                            <a href="{{ route('register') }}" class="btn btn-success"><strong>Registrar</strong></a>
                         @endif
                     @endauth
                 @endif

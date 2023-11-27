@@ -16,23 +16,29 @@ class NumberContactSeeder extends Seeder
         //
         DB::table('number_contacts')->insert([
             [
-                'number' => '73625062',
+                'number' => '7000000',
                 'user_id' => '1',
-            
             ],
             [
-                'number' => '73625063',
+                'number' => '7000000',
                 'user_id' => '2',
             ],
             [
-                'number' => '73625064',
+                'number' => '7000000',
                 'user_id' => '3',
             ],
             [
-                'number' => '73625065',
+                'number' => '7000000',
                 'user_id' => '4',
+            ],
+            [
+                'number' => '7000000',
+                'user_id' => '5',
+            ],
+            [
+                'number' => '7000000',
+                'user_id' => '6',
             ]
-
         ]);
 
     }

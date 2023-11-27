@@ -23,6 +23,8 @@ class Event extends Model
         'start_time',
         'privacity',
         'user_id',
+        'created_at',
+        'updated_at'
     ];
 
     /**

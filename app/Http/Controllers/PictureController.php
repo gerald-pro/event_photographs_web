@@ -19,6 +19,10 @@ class PictureController extends Controller
         $user = Auth::user();
         $pictures = Picture::where('user_id', $user->id)
             ->where('event_id', $event->id)->get();
+        foreach ($pictures as &$picture) {
+            $url = Cloudinary::getUrl($picture->photo_path);
+            $picture->url = $url;
+        }
         return view('event-photo.index', compact('pictures', 'event'));
     }
 
@@ -36,18 +40,19 @@ class PictureController extends Controller
     public function store(Request $request, Event $event)
     {
         $user = Auth::user();
+
         $imagen = $request->file('file');
 
         $rkService = new RekognitionService();
         $faces = $rkService->searchFaceUsersByImage($imagen->get());
 
-        $fotoCloud = Cloudinary::upload($imagen->getRealPath(), ['folders' => 'users']);
-        $public_id = $fotoCloud->getPublicId();
-        $url = $fotoCloud->getSecurePath();
+        $fotoCloud = Cloudinary::upload($imagen->getRealPath(), ['folder' => 'events']);
+
+        $publicId = $fotoCloud->getPublicId();
         $imageName = time() . '.' . $imagen->extension();
         $picture = Picture::create([
             'name' => $imageName,
-            'url' => $url,
+            'photo_path' => $publicId,
             'price' => $request['price'] ? $request['price'] : 5.00,
             'event_id' => $event->id,
             'user_id' => $user->id
@@ -88,6 +93,7 @@ class PictureController extends Controller
      */
     public function destroy(Event $event, Picture $picture)
     {
+        Cloudinary::destroy($picture->photo_path);
         $picture->delete();
         return redirect()->route('event.gallery.index', $event);
     }

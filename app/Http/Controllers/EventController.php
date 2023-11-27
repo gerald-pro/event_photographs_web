@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\Profile_photo;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Services\RekognitionService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 

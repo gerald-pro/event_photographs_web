@@ -83,13 +83,13 @@ class RegisterController extends Controller
         ]);
 
         $imagen = $data['imagen'];
-        $respFaceIndex = $rkService->indexFace('users', $imagen->get());
-        $fotoCloud = Cloudinary::upload($imagen->getRealPath(), ['folders' => 'users']);
+        $respFaceIndex = $rkService->indexFace('users1', $imagen->get());
+        $fotoCloud = Cloudinary::upload($imagen->getRealPath(), ['folder' => 'users']);
         $public_id = $fotoCloud->getPublicId();
-        $url = $fotoCloud->getSecurePath();
+        //$url = $fotoCloud->getSecurePath();
         
         Profile_photo::create([
-            'profile_photo_path' => $url,
+            'profile_photo_path' => $public_id,
             'user_id' => $user->id,
             'face_id' => $respFaceIndex['FaceId'],
         ]);

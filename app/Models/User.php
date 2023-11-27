@@ -28,6 +28,8 @@ class User extends Authenticatable implements JWTSubject
         'username',
         'email',
         'password',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -123,13 +125,27 @@ class User extends Authenticatable implements JWTSubject
             ->withTimestamps();
     }
 
-    public function invitationAceptedPhotographer(Event $event) {
+    public function invitationAceptedPhotographer(Event $event)
+    {
         return EventPhotographer::where('event_id', $event->id)
-        ->where('user_id', $this->id)->first()->presence;
+            ->where('user_id', $this->id)->first()->presence;
     }
 
-    public function invitationAceptedUser(Event $event) {
+    public function invitationAceptedUser(Event $event)
+    {
         return UserEventAccess::where('event_id', $event->id)
-        ->where('user_id', $this->id)->first()->presence;
+            ->where('user_id', $this->id)->first()->presence;
+    }
+
+    /**
+     *
+     */
+    public function purchasedPictures(): BelongsToMany
+    {
+        return $this->belongsToMany(Picture::class, 'sale_notes')
+            ->withPivot('nro_transaction')
+            ->withPivot('status')
+            ->wherePivot('status', 1)
+            ->withTimestamps();
     }
 }
