@@ -11,19 +11,18 @@
             </div>
             <div class="card-body">
                 <div class="col-md-12">
-
-                    <form action="{{ route('event.gallery.store', $event) }}" method="post" enctype="multipart/form-data"
-                        id="image-upload" class="dropzone form-control mb-3">
-                        @csrf
-
-                    </form>
+                        <form action="{{ route('event.gallery.store', $event) }}" method="post" enctype="multipart/form-data"
+                            id="image-upload" class="dropzone form-control mb-3" style="height: 400px">
+                            @csrf
+                        </form>
                     <div class="form-row">
                         <div class="col-4">
                             <div class="input-group mb-3">
                                 <input id="price" name="price" type="number" class="form-control" required
                                     placeholder="Precio (Bs)" value="0.01">
                                 <div class="input-group-append">
-                                    <button id="buttonSubmitE" type="button" class="btn btn-outline-primary"><i class="fa fa-fw fa-upload" aria-hidden="true"></i></button>
+                                    <button id="buttonSubmitE" type="button" class="btn btn-outline-primary"><i
+                                            class="fa fa-fw fa-upload" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>

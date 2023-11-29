@@ -7,8 +7,14 @@
     Esperamos contar con tu presencia. Para confirmar tu asistencia, por favor haz clic en
     el siguiente enlace: <br><br>
 
-    <a href="{{ $mailData['url'] }}">Ver invitacion</a> <br><br>
+    @php
+        $qrContent = 'https://tu-url-o-datos-a-codificar';
+        $png = QrCode::format('png')
+            ->size(300)
+            ->generate($qrContent);
+    @endphp
 
+    <img src="data:image/png;base64,{{ base64_encode($png) }}" alt="Código QR">
     Saludos <br>
     {{ $mailData['sender_name'] }}
 </div>

@@ -68,6 +68,16 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    /**
+     * Specifies the user's FCM token
+     *
+     * @return string|array
+     */
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
+    }
+
     //relacion uno a muchos
     public function profilePhotos(): HasMany
     {

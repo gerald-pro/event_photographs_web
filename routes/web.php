@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\ListGuests;
 use App\Livewire\ListPhotographers;
 use App\Http\Controllers\PictureController;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,18 +54,19 @@ Route::middleware('auth')->group(function () {
     Route::get('guest_invitations/{invitation}', [InvitationController::class, 'showGuestInvitation'])->name('guests.invitations.show');
     Route::get('guest_invitations/{invitation}/reject', [InvitationController::class, 'rejectGuestInvitation'])->name('guests.invitations.reject');
     Route::get('guest_invitations/{invitation}/accept', [InvitationController::class, 'acceptGuestInvitation'])->name('guests.invitations.accept');
-    Route::get('prueba', function () {
+    /* Route::get('prueba', function () {
         $user = Auth::user();
-        $pictures = $user->picturesWhereIAppear->where('event_id', 1)->values()->toArray();
-
-        //$pictures = $event->pictures->get();
-        dd($pictures);
-    });
+        $user->notify(new NewPictureWhereIAppear('Graduacion de la carrera de sistemas'));
+        return true;
+    }); */
 });
 
 
 Route::get('pago', function () {
-    return view('pago');
+    phpinfo();
+    /* return $svg = QrCode::format('png')->size(256)->generate('https://google.com');
+    $image = Image::make($svg)->encode('jpg');
+    echo $image; */
 });
 
 Route::post('/consumirServicio', [PagoFacilController::class, 'RecolectarDatos']);

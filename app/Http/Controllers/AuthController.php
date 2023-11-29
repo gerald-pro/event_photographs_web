@@ -24,7 +24,7 @@ class AuthController extends Controller
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         };
-        if ($request->fcm_token != null && $request->fcm_token != $user->fcm_token) {
+        if (!empty($request->fcm_token) && $request->fcm_token != $user->fcm_token) {
             $user->update(['fcm_token' => $request->fcm_token]);
         }
         return $user->createToken($request->device_name)->plainTextToken;

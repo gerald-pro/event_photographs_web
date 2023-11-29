@@ -29,7 +29,7 @@ class GuestInvitationMail extends Mailable
     {
         return new Envelope(
             subject: $this->mailData['title'],
-            from: new Address('photoweb@example.com', 'Web Photography'),
+            from: new Address('photoweb@example.com', 'Event photographs'),
         );
     }
 
