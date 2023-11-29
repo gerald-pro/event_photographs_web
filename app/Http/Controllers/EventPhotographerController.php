@@ -22,8 +22,8 @@ class EventPhotographerController extends Controller
     {
         $user = Auth::user();
         $eventos = EventPhotographer::where('user_id', $user->id)
-                  ->where('status', 1)->get();
-        return view('event.eventphotographer', compact('eventos'));
+            ->where('status', 1)->get();
+        return view('event.photographer.index', compact('eventos'));
     }
 
     /**
@@ -50,8 +50,8 @@ class EventPhotographerController extends Controller
         $eventosID = $event;
         $user = Auth::user();
         $token = EventPhotographer::where('event_id', $event->id)
-        ->where('user_id',$user->id)->first()->token;
-        return view('event.eventphotoshow',compact('eventosID','token'));
+            ->where('user_id', $user->id)->first()->token;
+        return view('event.photographer.show', compact('eventosID', 'token'));
     }
 
     /**
@@ -78,36 +78,42 @@ class EventPhotographerController extends Controller
         //
     }
 
-    public function verifyToken(Request $request, Event $event) {
+    public function verifyToken(Request $request, Event $event)
+    {
         if ($request['token']) {
-          $token = $request['token'];
-          $key = $event->key_event;
-          $result = JWT::decode($token, new Key($key, 'HS256'));
-          if ($result) {
-            $eventUser = EventPhotographer::where('event_id', $event->id)
-            ->where('user_id',$result->user_id)->first();
-              if ($eventUser->presence) {
-                $message = "La invitacion ya fue usada";
-                return view('event.verify-token', compact('event', 'message'));
-              }
-            $result = User::find($result->user_id);
-            return view('event.verify-token', compact('result', 'event'));
-          }  
+            $token = $request['token'];
+            $key = $event->key_event;
+            $result = JWT::decode($token, new Key($key, 'HS256'));
+            if ($result) {
+                $eventUser = EventPhotographer::where('event_id', $event->id)
+                    ->where('user_id', $result->user_id)->first();
+                if ($eventUser == null) {
+                    $message = "No existe dicha invitación";
+                    return view('event.verify-token', compact('event', 'message'));
+                }
+                if ($eventUser->presence) {
+                    $message = "La invitacion ya fue usada";
+                    return view('event.verify-token', compact('event', 'message'));
+                }
+                $result = User::find($result->user_id);
+                return view('event.verify-token', compact('result', 'event'));
+            }
         }
         $message = "No se encontraron resultados";
-        return view('event.verify-token',compact('event', 'message'));
+        return view('event.verify-token', compact('event', 'message'));
     }
 
-    public function eventConfirm(Request $request, Event $event, User $user) {
+    public function eventConfirm(Request $request, Event $event, User $user)
+    {
         $eventUser = EventPhotographer::where('event_id', $event->id)
-        ->where('user_id',$user->id)->first();
+            ->where('user_id', $user->id)->first();
         if (!$eventUser) {
             $eventUser = UserEventAccess::where('event_id', $event->id)
-            ->where('user_id',$user->id)->first();
+                ->where('user_id', $user->id)->first();
         }
         $eventUser->presence = 1;
         $eventUser->save();
         $message = "";
-        return redirect()->route('verify.token',compact('event', 'message'));
+        return redirect()->route('verify.token', compact('event', 'message'));
     }
 }

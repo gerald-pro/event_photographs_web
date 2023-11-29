@@ -29,7 +29,8 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'fcm_token'
     ];
 
     /**
@@ -65,6 +66,16 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Specifies the user's FCM token
+     *
+     * @return string|array
+     */
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
     }
 
     //relacion uno a muchos
