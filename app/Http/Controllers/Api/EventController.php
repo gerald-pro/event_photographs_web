@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\UserEventAccess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class EventController extends Controller
                 'name' => $event->name,
                 'detail' => $event->detail,
                 'address' => $event->address,
-                'key_event' => $event->key_event,
+                'token' => UserEventAccess::all()->where('event_id', $event->id)->where('user_id', $user->id)->first()->token,
                 'start_date' => $event->start_date,
                 'start_time' => $event->start_time,
                 'privacity' => $event->privacity = 0 ? 'Público' : ($event->privacity = 1 ? 'Privado' : 'Solo yo'),
@@ -77,12 +78,14 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $user = Auth::user();
         $response = [
             'id' => $event->id,
             'name' => $event->name,
             'detail' => $event->detail,
             'address' => $event->address,
             'key_event' => $event->key_event,
+            'token' => UserEventAccess::all()->where('event_id', $event->id)->where('user_id', $user->id)->first()->token,
             'start_date' => $event->start_date,
             'start_time' => $event->start_time,
             'privacity' => $event->privacity == 0 ? 'Público' : ($event->privacity == 1 ? 'Privado' : 'Solo fotos donde aparezco'),

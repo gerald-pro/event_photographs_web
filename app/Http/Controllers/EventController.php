@@ -16,7 +16,7 @@ class EventController extends Controller
     {
         $user = Auth::user();
         $eventos = Event::all()->where('user_id', $user->id);
-        return view('event/index', compact('eventos'));
+        return view('event.planner.index', compact('eventos'));
     }
 
     /**
@@ -24,7 +24,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event/create');
+        return view('event.planner.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $eventoId = Event::findOrFail($id);
-        return view('event.edit', compact('eventoId'));
+        return view('event.planner.edit', compact('eventoId'));
     }
 
     /**
@@ -100,6 +100,6 @@ class EventController extends Controller
     public function listGuests(Event $event)
     {
         $guests = $event->guests;
-        return view('event.list_guests', compact('event'));
+        return view('event.planner.list_guests', compact('event'));
     }
 }
