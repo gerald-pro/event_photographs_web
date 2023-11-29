@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Picture;
 use App\Models\Profile_photo;
+use App\Notifications\NewPictureWhereIAppear;
 use Intervention\Image\Facades\Image;
 use Aws\Credentials\Credentials;
 use Aws\Exception\AwsException;
@@ -327,6 +328,7 @@ class RekognitionService
         $profilePhotos = Profile_photo::all()->whereIn('face_id', $faceIds)->whereIn('user_id', $guestIds);
         foreach ($profilePhotos as $profilePhoto) {
             $profilePhoto->user->picturesWhereIAppear()->save($picture);
+            $profilePhoto->user->notify(new NewPictureWhereIAppear($picture->event->name));
         }
     }
 

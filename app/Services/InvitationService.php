@@ -33,16 +33,16 @@ class InvitationService
                 $invitation = $event->guestInvitations->where('email_receiver', $email_receiver)->first();
         
                 if ($invitation) {
-                    $urlShowInvitation = route('guests.invitations.show', encrypt($invitation->id));
-                    $mailData = ['url' => $urlShowInvitation] + $mailData;
+                    $encrypetdId = encrypt($invitation->id);
+                    $mailData = ['invitation_id' => $encrypetdId] + $mailData;
                     $dateDiff = Carbon::now()->diffInHours(Carbon::parse($invitation->send_date));
 
-                    if ($dateDiff <= 0) {
-                        $response = ['status' => 'error', 'message' => 'No puede enviar otra invitación a ese correo. Espere una hora para volver a invitar dicho correo'];
-                    } else {
+                    //if ($dateDiff <= 0) {
+                    //    $response = ['status' => 'error', 'message' => 'No puede enviar otra invitación a ese correo. Espere una hora para volver a invitar dicho correo'];
+                    //} else {
                         Mail::to($email_receiver)->send(new GuestInvitationMail($mailData));
                         $invitation->update(['send_date' => now()]);
-                    }
+                    //}
                 } else {
                     $invitation = new Invitation([
                         'email_receiver' => $email_receiver,

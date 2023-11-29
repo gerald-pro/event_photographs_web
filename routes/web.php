@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\ListGuests;
 use App\Livewire\ListPhotographers;
 use App\Http\Controllers\PictureController;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,28 +44,29 @@ Route::middleware('auth')->group(function () {
     Route::get('event/{event}/photographers', ListPhotographers::class)->name('events.photographers');
     Route::get('event/listEvents/photographer', [EventPhotographerController::class, 'index'])->name('events.listEvents.photographer');
     Route::get('event/listEvents/photographer/show/{event}', [EventPhotographerController::class, 'show'])->name('events.listEvents.photographer.show');
-    Route::get('event/{event}/gallery', [PictureController::class, 'index'])->name('event.gallery.index');
+    Route::get('event/{event}/gallery', [PictureController::class, 'gallery'])->name('event.gallery.index');
     Route::get('event/{event}/verify', [EventPhotographerController::class, 'verifyToken'])->name('verify.token');
     Route::post('event/{event}/confirm/{user}', [EventPhotographerController::class, 'eventConfirm'])->name('event.confirm');
-    Route::get('event/{event}/gallery/create', [PictureController::class, 'create'])->name('event.gallery.create');
+    Route::get('event/{event}/gallery/create', [PictureController::class, 'upload'])->name('event.gallery.create');
     Route::post('event/{event}/gallery/store', [PictureController::class, 'store'])->name('event.gallery.store');
     Route::post('event/{event}/gallery/delete/{picture}', [PictureController::class, 'destroy'])->name('event.gallery.destroy');
 
     Route::get('guest_invitations/{invitation}', [InvitationController::class, 'showGuestInvitation'])->name('guests.invitations.show');
     Route::get('guest_invitations/{invitation}/reject', [InvitationController::class, 'rejectGuestInvitation'])->name('guests.invitations.reject');
     Route::get('guest_invitations/{invitation}/accept', [InvitationController::class, 'acceptGuestInvitation'])->name('guests.invitations.accept');
-    Route::get('prueba', function () {
+    /* Route::get('prueba', function () {
         $user = Auth::user();
-        $pictures = $user->picturesWhereIAppear->where('event_id', 1)->values()->toArray();
-
-        //$pictures = $event->pictures->get();
-        dd($pictures);
-    });
+        $user->notify(new NewPictureWhereIAppear('Graduacion de la carrera de sistemas'));
+        return true;
+    }); */
 });
 
 
 Route::get('pago', function () {
-    return view('pago');
+    phpinfo();
+    /* return $svg = QrCode::format('png')->size(256)->generate('https://google.com');
+    $image = Image::make($svg)->encode('jpg');
+    echo $image; */
 });
 
 Route::post('/consumirServicio', [PagoFacilController::class, 'RecolectarDatos']);

@@ -14,7 +14,7 @@ class PictureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Event $event)
+    public function gallery(Event $event)
     {
         $user = Auth::user();
         $pictures = Picture::where('user_id', $user->id)
@@ -23,15 +23,15 @@ class PictureController extends Controller
             $url = Cloudinary::getUrl($picture->photo_path);
             $picture->url = $url;
         }
-        return view('event-photo.index', compact('pictures', 'event'));
+        return view('event.gallery_pictures', compact('pictures', 'event'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Event $event)
+    public function upload(Event $event)
     {
-        return view('event-photo.create', compact('event'));
+        return view('event.upload_pictures', compact('event'));
     }
 
     /**

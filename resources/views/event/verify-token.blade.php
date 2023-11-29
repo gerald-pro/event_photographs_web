@@ -10,46 +10,35 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-5">
-                        <div id="reader"></div>
-                    </div>
-                    <div class="col-md-2">
-                        QR
-                    </div>
-                    <div class="col-md-5">
-                        <div class="column">
-                            <div class="row-md-5">
 
-                            </div>
-                            <div class="row-md-2">
-                                <br>
-                            </div>
-                            <div class="row-md-5">
-                                <div class="card info">
-                                    @if (isset($result) && $result)
-                                        <strong>Invitacion de </strong> {{ $result->name }}
-                                        <br>
-                                        <img src="{{ $result->profilePhotos()->first()->profile_photo_path }}"
-                                            alt="FotoPerfil" height="150px" width="130px">
-                                        @php
-                                            $user = $result;
-                                        @endphp
-                                        <form id="elementform"
-                                            action="{{ route('event.confirm', compact('event', 'user')) }}" method="POST">
-                                            <strong>¿Confirmar asistencia?</strong>
-                                            <div class="row">
-                                                <input type="submit" value="Confirmar asistencia"
-                                                    class="btn btn-secondary">
-                                            </div>
-                                            @csrf
-                                            @method('POST')
-                                        </form>
-                                    @else
-                                        {{ $message }}
-                                    @endif
-                                </div>
+                    <div class="col-md-6">
+                        <div class="row-md-6">
+                            <div class="card info">
+                                @if (isset($result) && $result)
+                                    <strong>Invitacion de </strong> {{ $result->name }}
+                                    <br>
+                                    <img src="{{ $result->profilePhotos()->first()->profile_photo_path }}" alt="FotoPerfil"
+                                        height="150px" width="130px">
+                                    @php
+                                        $user = $result;
+                                    @endphp
+                                    <form id="elementform" action="{{ route('event.confirm', compact('event', 'user')) }}"
+                                        method="POST">
+                                        <strong>¿Confirmar asistencia?</strong>
+                                        <div class="row">
+                                            <input type="submit" value="Confirmar asistencia" class="btn btn-secondary">
+                                        </div>
+                                        @csrf
+                                        @method('POST')
+                                    </form>
+                                @else
+                                    {{ $message }}
+                                @endif
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="reader"></div>
                     </div>
                 </div>
                 <br>
@@ -65,10 +54,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </form>
             </div>
             <div class="card-footer text-muted">
